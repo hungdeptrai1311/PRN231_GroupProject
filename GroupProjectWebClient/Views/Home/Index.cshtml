@@ -1,0 +1,176 @@
+﻿@{
+    Layout = "_LayoutCustomer";
+}
+@using BusinessObject.Models
+@model List<Product>
+
+<div class="row">
+	<!-- Sidebar ================================================== -->
+	<div id="sidebar" class="span3">
+		@if (ViewBag.Carts != null)
+		{
+			<div class="well well-small">
+				<a id="myCart" href="/Home/ViewCart">
+
+					<img src="~/themes/images/ico-cart.png" alt="cart">@ViewBag.Carts.Count Items in your cart <span class="badge badge-warning pull-right">@string.Format("{0:C0}", @ViewBag.TotalPrice)</span>
+				</a>
+			</div>
+		}
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open">
+				<a> BRANDS [@ViewBag.Brands.Count]</a>
+				<ul>
+					<li>
+						<a class="active" href="/Home/Index?sort=@ViewBag.Sort&name=@ViewBag.Name&brandID=0&categoryID=@ViewBag.CategoryID">
+							<i class="icon-chevron-right"></i> All
+						</a>
+					</li>
+					@foreach (Brand item in @ViewBag.Brands)
+					{
+						<li>
+							<a class="active" href="/Home/Index?sort=@ViewBag.Sort&name=@ViewBag.Name&brandID=@item.BrandId&categoryID=@ViewBag.CategoryID">
+								<i class="icon-chevron-right"></i> @item.BrandName
+								(@item.Products.Count)
+							</a>
+						</li>
+					}
+				</ul>
+			</li>
+			<li class="subMenu">
+				<a> CATEGORYS [@ViewBag.Categorys.Count] </a>
+				<ul style="display:none">
+					<li>
+						<a class="active" href="/Home/Index?sort=@ViewBag.Sort&name=@ViewBag.Name&brandID=@ViewBag.BrandID&categoryID=0">
+							<i class="icon-chevron-right"></i>All
+						</a>
+					</li>
+					@foreach (Category item in @ViewBag.Categorys)
+					{
+						<li>
+							<a class="active" href="/Home/Index?sort=@ViewBag.Sort&name=@ViewBag.Name&brandID=@ViewBag.BrandID&categoryID=@item.CategoryId">
+								<i class="icon-chevron-right"></i>@item.CategoryName (@item.Products.Count)
+							</a>
+						</li>
+					}
+				</ul>
+			</li>
+		</ul>
+		<br />
+
+	</div>
+	<!-- Sidebar end=============================================== -->
+	<div class="span9">
+		<ul class="breadcrumb">
+			<li><a href="/Home/Index">Home</a>
+		</ul>
+		<h3> Products <small class="pull-right"> @Model.Count products are available </small></h3>
+		<hr class="soft" />
+		<form action="/Home/Index" class="form-horizontal span6">
+			<div class="control-group">
+				<label class="control-label alignL">Sort By </label>
+				<select name="sort" id="sortSelect">
+					<option selected value="1">Product name A - Z</option>
+					<option selected="@((int)ViewBag.Sort == 2)" value="2">Product name Z - A</option>
+					<option selected="@((int)ViewBag.Sort == 3)" value="3">Prices gradually increase</option>
+					<option selected="@((int)ViewBag.Sort == 4)" value="4">Prices gradually decrease</option>
+				</select>
+			</div>
+			<div class="control-group">
+				<label class="control-label alignL">Name </label>
+				<input id="srchFld" class="srchTxt" name="name"
+					value="@ViewBag.Name" type="text" />
+			</div>
+			<input type="hidden" name="brandID" value="@ViewBag.BrandID" />
+			<input type="hidden" name="categoryID" value="@ViewBag.CategoryID" />
+		</form>
+		<script>
+			document.getElementById("sortSelect").addEventListener("change", function () {
+				this.form.submit();
+			});
+		</script>
+
+		<div id="myTab" class="pull-right">
+			<a href="#listView" data-toggle="tab">
+				<span class="btn btn-large">
+					<i class="icon-list"></i>
+				</span>
+			</a>
+			<a href="#blockView" data-toggle="tab">
+				<span class="btn btn-large btn-primary">
+					<i class="icon-th-large"></i>
+				</span>
+			</a>
+		</div>
+		<br class="clr" />
+		<div class="tab-content">
+			<div class="tab-pane" id="listView">
+				@foreach (Product item in Model)
+				{
+					<div class="row">
+						<div class="span2">
+							<img src="@item.ProductImage" alt="" />
+						</div>
+						<div class="span4">
+							<h5>@item.ProductName</h5>
+							<p>
+								@item.Description
+							</p>
+							<a class="btn btn-small pull-right" href="#">View Details</a>
+							<br class="clr" />
+						</div>
+						<div class="span3 alignR">
+								<h3> @string.Format("{0:C0}", item.Price)</h3>
+
+								<button onclick="addToCart('@item.ProductId')" class="btn btn-large btn-primary">
+									Add to <i class="icon-shopping-cart"></i>
+								</button>
+						</div>
+					</div>
+					<hr class="soft" />
+				} 
+				<script>
+					function addToCart(id) {
+					@if (ViewBag.Carts == null)
+					{
+						<text>
+								alert('You need to login');
+							return;
+						</text>
+					}
+							window.location.href = "/Home/Index?sort=@ViewBag.Sort&name=@ViewBag.Name&brandID=@ViewBag.BrandID&categoryID=@ViewBag.CategoryID&addCart="+id;
+					}
+				</script>
+			</div>
+
+			<div class="tab-pane  active" id="blockView">
+				<ul class="thumbnails">
+					@foreach (Product item in Model)
+					{
+						<li class="span3">
+							<div class="thumbnail">
+								<a href="#">
+									<img src="@item.ProductImage"
+										 alt="" />
+								</a>
+								<div class="caption">
+									<h5>@item.ProductName</h5>
+									 
+									<h4 style="text-align:center">
+										<a class="btn" href="#">
+											<i class="icon-zoom-in"></i>
+										</a>
+										<button onclick="addToCart('@item.ProductId')" class="btn btn-large btn-primary">
+											Add to <i class="icon-shopping-cart"></i>
+										</button>
+										</h4>
+								</div>
+							</div>
+						</li>
+					}
+				</ul>
+				<hr class="soft" />
+			</div>
+		</div>
+		<br class="clr" />
+	</div>
+</div>

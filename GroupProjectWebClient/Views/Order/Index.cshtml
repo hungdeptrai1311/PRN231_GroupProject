@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_LayoutUser";
+}
+@using BusinessObject.Models
+@model Order
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>List of Orders</h2>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Order #1
+                    <span class="badge bg-primary">Pending</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Order #2
+                    <span class="badge bg-success">Completed</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Order #3
+                    <span class="badge bg-warning text-dark">Processing</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Order #4
+                    <span class="badge bg-danger">Cancelled</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

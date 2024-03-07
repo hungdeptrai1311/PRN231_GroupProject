@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "_LayoutUser";
+}
+@using BusinessObject.Models
+@model User
+
+<div class="col-md-8">
+    <div class="card mb-3">
+        <div class="card-body">
+            <form asp-action="/Home/EditUser" method="post">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9">
+                        <input asp-for="Name" type="text" class="form-control" id="fullName">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9">
+                        <input asp-for="Email" type="email" class="form-control" id="email">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9">
+                        <input asp-for="Phone" type="tel" class="form-control" id="phone">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9">
+                        <input asp-for="Address" type="text" class="form-control" id="address">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class="btn btn-info" type="submit" id="editBtn">Edit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

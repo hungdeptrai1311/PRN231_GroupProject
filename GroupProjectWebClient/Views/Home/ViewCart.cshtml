@@ -1,0 +1,132 @@
+﻿@{
+    Layout = "_LayoutCustomer";
+}
+@using BusinessObject.Models
+
+<div class="row">
+	<!-- Sidebar ================================================== -->
+	<div id="sidebar" class="span3">
+		@if (ViewBag.Carts != null)
+		{
+			<div class="well well-small">
+				<a id="myCart" href="/Home/ViewCart">
+
+					<img src="~/themes/images/ico-cart.png" alt="cart">@ViewBag.Carts.Count Items in your cart <span class="badge badge-warning pull-right">@string.Format("{0:C0}", @ViewBag.TotalPrice)</span>
+				</a>
+			</div>
+		}
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open">
+				<a> BRANDS [@ViewBag.Brands.Count]</a>
+				<ul>
+					<li>
+						<a class="active" href="/Home/Index">
+							<i class="icon-chevron-right"></i> All
+						</a>
+					</li>
+					@foreach (Brand item in @ViewBag.Brands)
+					{
+						<li>
+							<a class="active" href="/Home/Index?brandID=@item.BrandId">
+								<i class="icon-chevron-right"></i> @item.BrandName
+								(@item.Products.Count)
+							</a>
+						</li>
+					}
+				</ul>
+			</li>
+			<li class="subMenu">
+				<a> CATEGORYS [@ViewBag.Categorys.Count] </a>
+				<ul style="display:none">
+					<li>
+						<a class="active" href="/Home/Index">
+							<i class="icon-chevron-right"></i>All
+						</a>
+					</li>
+					@foreach (Category item in @ViewBag.Categorys)
+					{
+						<li>
+							<a class="active" href="/Home/Index?categoryID=@item.CategoryId">
+								<i class="icon-chevron-right"></i>@item.CategoryName (@item.Products.Count)
+							</a>
+						</li>
+					}
+				</ul>
+			</li>
+		</ul>
+		<br />
+	</div>
+	<!-- Sidebar end=============================================== -->
+	<div class="span9">
+		<ul class="breadcrumb">
+			<li><a href="/Home/Index">Home</a> <span class="divider">/</span></li>
+			<li class="active"> SHOPPING CART</li>
+		</ul>
+		<h3>
+			SHOPPING CART [ <small>@ViewBag.Carts.Count Item(s) </small>]<a href="/Home/Index"
+													  class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a>
+		</h3>
+		<hr class="soft" />
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Name</th>
+					<th>Quantity/Update</th>
+					<th>Price</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (Cart item in @ViewBag.Carts)
+				{
+					<tr>
+						<td> <img width="60" src="@item.Product.ProductImage" alt="" /></td>
+						<td>@item.Product.ProductName</td>
+						<td>
+							<div class="input-append">
+								<input class="span1" style="max-width:34px"
+									   min="0" value="@item.Quantity" onchange="updateCart('@item.CartId', this.value)"
+									   size="16" type="number">
+
+								<a class="btn" href="/Home/UpdateCart?cartID=@item.CartId&changValue=2">
+									<i class="icon-minus"></i>
+								</a>
+								<a class="btn" href="/Home/UpdateCart?cartID=@item.CartId&changValue=1">
+									<i class="icon-plus"></i>
+								</a>
+								<a class="btn btn-danger" href="/Home/UpdateCart?cartID=@item.CartId&changValue=3">
+									<i class="icon-remove icon-white"></i>
+								</a>
+							</div>
+						</td>
+						<td>@string.Format("{0:C0}", item.Product.Price)</td>
+						<td>@string.Format("{0:C0}", item.Product.Price * item.Quantity)</td>
+					</tr>
+				}
+				
+				<script>
+					function updateCart(id, number) {
+						// Lấy giá trị mới của input
+
+						window.location.href = '/Home/UpdateCart?cartID=' + id + '&quantity='+ number;
+					}
+				</script>
+
+				<tr>
+					<td colspan="6" style="text-align:right">Total Price: </td>
+					<td> @string.Format("{0:C0}", ViewBag.TotalPrice)</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="/Home/Index" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+		@if (@ViewBag.Carts != null)
+		{
+			@if (@ViewBag.Carts.Count > 0)
+			{
+				<a href="/Home/Payment" class="btn btn-large pull-right">Pay <i class="icon-arrow-right"></i></a>
+			}
+		}
+	</div>
+</div>
