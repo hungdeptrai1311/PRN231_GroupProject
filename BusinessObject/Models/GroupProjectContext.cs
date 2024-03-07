@@ -30,7 +30,7 @@ namespace BusinessObject.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=GroupProject;Trusted_Connection=false;User ID=sa;Password=123");
+                optionsBuilder.UseSqlServer("server =localhost; database = GroupProject;uid=sa;pwd=123;TrustServerCertificate=true");
             }
         }
 
@@ -50,8 +50,6 @@ namespace BusinessObject.Models
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.ToTable("Cart");
-
-                entity.Property(e => e.CartId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Carts)
@@ -77,15 +75,12 @@ namespace BusinessObject.Models
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.OrderId).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.HasOne(d => d.OrderNavigation)
-                    .WithOne(p => p.Order)
-                    .HasForeignKey<Order>(d => d.OrderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Order_User");
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Order_User1");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>
