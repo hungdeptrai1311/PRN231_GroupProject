@@ -228,20 +228,18 @@ namespace GroupProjectWebClient.Controllers
                     order.OrderDetails.Add(orderDetail);
                 }
 
-                using (GroupProjectContext context = new GroupProjectContext())
-                {
-                    context.Orders.Add(order);
-                    context.SaveChanges();
-                }
+                //using (GroupProjectContext context = new GroupProjectContext())
+                //{
+                //    context.Orders.Add(order);
+                //    context.SaveChanges();
+                //}
 
+                string strDataOrder = JsonConvert.SerializeObject(order);
+                HttpContent contentOrder = new StringContent(strDataOrder, Encoding.UTF8, "application/json");
+                HttpResponseMessage responseOrder =
+                    await client.PostAsync(ApiUrl + "Orders/AddOrder", contentOrder);
 
-
-                //string strDataOrder = JsonConvert.SerializeObject(order);
-                //HttpContent contentOrder = new StringContent(strDataOrder, Encoding.UTF8, "application/json");
-                //HttpResponseMessage responseOrder =
-                //    await client.PostAsync(ApiUrl + "Orders/AddOrder", contentOrder);
-
-                //HttpResponseMessage responseDeleteCart = await client.GetAsync(ApiUrl + "Carts/DeleteCartByUser?userID=" + userID);
+                HttpResponseMessage responseDeleteCart = await client.GetAsync(ApiUrl + "Carts/DeleteCartByUser?userID=" + userID);
 
                 return View("PaymentDone");
             }

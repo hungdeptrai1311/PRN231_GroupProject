@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObject", "BusinessO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{65EEAD40-E444-4BFC-A12B-8B8E23B86891}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupProjectWebClient", "GroupProjectWebClient\GroupProjectWebClient.csproj", "{A1D2EE2B-0535-46F6-8D46-FAB66441A751}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupProjectWebClient", "GroupProjectWebClient\GroupProjectWebClient.csproj", "{89D53FFE-76C1-4280-AA05-9D2CA01EB012}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{65EEAD40-E444-4BFC-A12B-8B8E23B86891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65EEAD40-E444-4BFC-A12B-8B8E23B86891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65EEAD40-E444-4BFC-A12B-8B8E23B86891}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1D2EE2B-0535-46F6-8D46-FAB66441A751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1D2EE2B-0535-46F6-8D46-FAB66441A751}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1D2EE2B-0535-46F6-8D46-FAB66441A751}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1D2EE2B-0535-46F6-8D46-FAB66441A751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D53FFE-76C1-4280-AA05-9D2CA01EB012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D53FFE-76C1-4280-AA05-9D2CA01EB012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D53FFE-76C1-4280-AA05-9D2CA01EB012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D53FFE-76C1-4280-AA05-9D2CA01EB012}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
