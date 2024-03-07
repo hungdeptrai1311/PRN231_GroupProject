@@ -1924,19 +1924,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\NCC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\GroupProject\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\PC\\source\\repos\\GroupProject\\DataAccess\\DataAccess.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\source\\repos\\GroupProject\\DataAccess\\obj\\",
+      "projectPath": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\NCC\\.nuget\\packages\\",
+      "outputPath": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\NCC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1950,8 +1950,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\PC\\source\\repos\\GroupProject\\BusinessObject\\BusinessObject.csproj": {
-              "projectPath": "C:\\Users\\PC\\source\\repos\\GroupProject\\BusinessObject\\BusinessObject.csproj"
+            "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\BusinessObject\\BusinessObject.csproj": {
+              "projectPath": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\BusinessObject\\BusinessObject.csproj"
             }
           }
         }
@@ -1960,6 +1960,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1981,7 +1986,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
