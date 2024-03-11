@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9C5E44B-53C7-4367-9FC4-C9EB68F60F0A}|GroupProjectApi\\GroupProjectApi.csproj|d:\\git\\nguyenvanluat\\prn231_groupproject\\groupprojectapi\\groupprojectapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A9C5E44B-53C7-4367-9FC4-C9EB68F60F0A}|GroupProjectApi\\GroupProjectApi.csproj|solutionrelative:groupprojectapi\\groupprojectapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|d:\\git\\nguyenvanluat\\prn231_groupproject\\groupprojectwebclient\\controllers\\brandsmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|solutionrelative:groupprojectwebclient\\controllers\\brandsmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|d:\\git\\nguyenvanluat\\prn231_groupproject\\groupprojectwebclient\\controllers\\usersmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|solutionrelative:groupprojectwebclient\\controllers\\usersmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|d:\\git\\nguyenvanluat\\prn231_groupproject\\groupprojectwebclient\\controllers\\productsmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|solutionrelative:groupprojectwebclient\\controllers\\productsmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|d:\\git\\nguyenvanluat\\prn231_groupproject\\groupprojectwebclient\\controllers\\ordersmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89D53FFE-76C1-4280-AA05-9D2CA01EB012}|GroupProjectWebClient\\GroupProjectWebClient.csproj|solutionrelative:groupprojectwebclient\\controllers\\ordersmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GroupProjectApi.csproj",
-              "DocumentMoniker": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectApi\\GroupProjectApi.csproj",
-              "RelativeDocumentMoniker": "GroupProjectApi\\GroupProjectApi.csproj",
-              "ToolTip": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectApi\\GroupProjectApi.csproj",
-              "RelativeToolTip": "GroupProjectApi\\GroupProjectApi.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-07T20:08:59.355Z",
+              "Title": "BrandsManagerController.cs",
+              "DocumentMoniker": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\BrandsManagerController.cs",
+              "RelativeDocumentMoniker": "GroupProjectWebClient\\Controllers\\BrandsManagerController.cs",
+              "ToolTip": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\BrandsManagerController.cs",
+              "RelativeToolTip": "GroupProjectWebClient\\Controllers\\BrandsManagerController.cs",
+              "ViewState": "AQIAAKsAAAAAAAAAAAAjwMEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T17:25:30.006Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsersManagerController.cs",
+              "DocumentMoniker": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\UsersManagerController.cs",
+              "RelativeDocumentMoniker": "GroupProjectWebClient\\Controllers\\UsersManagerController.cs",
+              "ToolTip": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\UsersManagerController.cs",
+              "RelativeToolTip": "GroupProjectWebClient\\Controllers\\UsersManagerController.cs",
+              "ViewState": "AQIAAL8AAAAAAAAAAAAswM8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T17:24:26.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductsManagerController.cs",
+              "DocumentMoniker": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\ProductsManagerController.cs",
+              "RelativeDocumentMoniker": "GroupProjectWebClient\\Controllers\\ProductsManagerController.cs",
+              "ToolTip": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\ProductsManagerController.cs",
+              "RelativeToolTip": "GroupProjectWebClient\\Controllers\\ProductsManagerController.cs",
+              "ViewState": "AQIAALwAAAAAAAAAAAAswNQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T17:23:19.578Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrdersManagerController.cs",
+              "DocumentMoniker": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\OrdersManagerController.cs",
+              "RelativeDocumentMoniker": "GroupProjectWebClient\\Controllers\\OrdersManagerController.cs",
+              "ToolTip": "D:\\GIT\\NguyenVanLuat\\PRN231_GroupProject\\GroupProjectWebClient\\Controllers\\OrdersManagerController.cs",
+              "RelativeToolTip": "GroupProjectWebClient\\Controllers\\OrdersManagerController.cs",
+              "ViewState": "AQIAALwAAAAAAAAAAAAMwM8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T17:18:46.849Z"
             }
           ]
         }

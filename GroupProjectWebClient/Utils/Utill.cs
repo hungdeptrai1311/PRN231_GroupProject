@@ -1,18 +1,33 @@
-﻿namespace GroupProjectWebClient.Utils
+﻿using BusinessObject.Models;
+using Newtonsoft.Json;
+
+namespace GroupProjectWebClient.Utils
 {
-	public class Utill
-	{
-		public int GetAccountID(HttpContext context)
-		{
-			//if (context.Session.GetString("userID") == null)
-			//{
-			//	return 0;
-			//}
+    public class Utill
+    {
+        public (int, int) GetAccountID(HttpContext context)
+        {
+            if (context.Session.GetString("userID") == null)
+            {
+                return (0, 0);
+            }
 
-			//string data = context.Session.GetString("userID");
+            string strData = context.Session.GetString("userID");
 
-			//return int.Parse(data);
-			return 1;
-		}
-	}
+            User user = JsonConvert.DeserializeObject<User>(strData) ?? new User();
+
+            return (user.UserId, user.RoleId);
+        }
+
+        public bool checkRole(HttpContext context)
+        {
+            (int userID, int roleId) = GetAccountID(context);
+            if (roleId == 1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
 }

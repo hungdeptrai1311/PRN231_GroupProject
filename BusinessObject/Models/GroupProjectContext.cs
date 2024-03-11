@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BusinessObject.Models
 {
@@ -75,12 +72,17 @@ namespace BusinessObject.Models
             {
                 entity.ToTable("Order");
 
+                entity.Property(e => e.OrderId).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_Order_User1");
+                entity.Property(e => e.Status).HasMaxLength(20);
+
+                entity.HasOne(d => d.OrderNavigation)
+                    .WithOne(p => p.Order)
+                    .HasForeignKey<Order>(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Order_User");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>

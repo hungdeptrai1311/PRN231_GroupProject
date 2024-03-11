@@ -8,7 +8,12 @@ namespace GroupProjectWebClient
 
             // Add services to the container.
             builder.Services.AddRazorPages();
-            builder.Services.AddSession();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(60 * 24 * 30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             var app = builder.Build();
 
@@ -32,7 +37,7 @@ namespace GroupProjectWebClient
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=ViewCart}/{id?}"
+                pattern: "{controller=Home}/{action=Index}/{id?}"
             );
 
             app.Run();

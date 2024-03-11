@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BusinessObject.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manager Brand</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Brand Name</th>
+                <th>Brand Image</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.BrandName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BrandImage)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>
+                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.BrandId">Edit</a>
+                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.BrandId">Details</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.BrandId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

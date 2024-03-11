@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "";
+}
+@using BusinessObject.Models
+@model User
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+
+    <link rel="stylesheet" href="~/css/styleLogin.css">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+
+    <section>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span>
+
+        <div class="signin row">
+
+            <div class="content">
+
+                <h2>Sign Up</h2>
+
+                <form class="form" asp-action="SignupCheck" method="post">
+                    <h3 style="color:red">
+                        @if (ViewBag.ErrorInfomation != null)
+                        {
+                            <text>
+                                Email already exists
+                            </text>
+                        }
+                        @if (ViewBag.ErrorSyS != null)
+                        {
+                            <text>
+                                Error !!! Please try again
+                            </text>
+                        }
+                    </h3>
+
+                    <div class="inputBox">
+                        <input type="text" asp-for="Email" required> <i>Email</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" asp-for="Name" required> <i>Name</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" asp-for="Address" required> <i>Address</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" asp-for="Phone" required> <i>Phone</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" asp-for="Password" required> <i>Password</i>
+                    </div>
+                    @if (ViewBag.ErrorConfirmPass != null)
+                    {
+                        <h3 style="color: red">Password confirm is not correct</h3>
+                    }
+                    <div class="inputBox">
+                        <input type="password" name="rePass" required> <i>Confirm password</i>
+                    </div>
+                    <div class="links">
+                        <a href="/Home/Login">SignIn</a>
+                    </div>
+
+                    <div class="inputBox">
+
+                        <input type="submit" value="SignUp">
+                        <br />
+                        <br />
+                        <br />
+
+                        <a style="text-align: center" href="/Home/Index"><h3>Home</h3></a>
+
+                    </div>
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </section> <!-- partial -->
+
+</body>
+
+</html>

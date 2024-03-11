@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BusinessObject.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manager Order</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <select name="status" onchange="updateStatus('@item.OrderId', this.value)">
+                        <option selected value="Pending Approval">Pending Approval</option>
+                        <option selected="@((string)item.Status == "Approved and Shipping")" value="Approved and Shipping">Approved and Shipping</option>
+                        <option selected="@((string)item.Status == "Delivered")" value="Delivered">Delivered</option>
+                    </select>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.OrderId" class="btn btn-secondary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.OrderId" class="btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+        }
+
+        <script>
+            function updateStatus(id, status) {
+                // Lấy giá trị mới của input
+
+                window.location.href = '/OrdersManager/UpdateStatus?id=' + id + '&stauts=' + status;
+            }
+        </script>
+    </tbody>
+</table>

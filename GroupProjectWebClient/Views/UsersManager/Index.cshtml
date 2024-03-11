@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BusinessObject.Models.User>
+
+@{
+    ViewData["Title"] = "User Manager";
+}
+
+<h1>User Manager</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Password)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Role.RoleName)</td>
+                    <td>
+                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

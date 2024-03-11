@@ -24,21 +24,21 @@ namespace GroupProjectWebClient.Controllers
 
         public async Task<IActionResult> Profile()
         {
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
             if (userID > 0)
             {
-                //HttpResponseMessage responseUser =
-                //    await client.GetAsync(ApiUrl + "User/GetUser?userID=" + userID);
-                //string strDataUser =
-                //    await responseUser.Content.ReadAsStringAsync();
+                HttpResponseMessage responseUser =
+                    await client.GetAsync(ApiUrl + "User/GetUser?userID=" + userID);
+                string strDataUser =
+                    await responseUser.Content.ReadAsStringAsync();
 
-                //User user = JsonConvert.DeserializeObject<User>(strDataUser);
+                User user = JsonConvert.DeserializeObject<User>(strDataUser);
 
                 //Start Setup tạm để test
-                GroupProjectContext groupProjectContext = new GroupProjectContext();
+                //GroupProjectContext groupProjectContext = new GroupProjectContext();
 
-                User user = groupProjectContext.Users.First();
+                //User user = groupProjectContext.Users.First();
                 // End set tạm
 
                 return View(user);
@@ -52,21 +52,21 @@ namespace GroupProjectWebClient.Controllers
         public async Task<IActionResult> Edit()
         {
 
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
             if (userID > 0)
             {
-                //HttpResponseMessage responseUser =
-                //    await client.GetAsync(ApiUrl + "User/GetUser?userID=" + userID);
-                //string strDataUser =
-                //    await responseUser.Content.ReadAsStringAsync();
+                HttpResponseMessage responseUser =
+                    await client.GetAsync(ApiUrl + "User/GetUser?userID=" + userID);
+                string strDataUser =
+                    await responseUser.Content.ReadAsStringAsync();
 
-                //User user = JsonConvert.DeserializeObject<User>(strDataUser);
+                User user = JsonConvert.DeserializeObject<User>(strDataUser);
 
                 //Start Setup tạm để test
-                GroupProjectContext groupProjectContext = new GroupProjectContext();
+                //GroupProjectContext groupProjectContext = new GroupProjectContext();
 
-                User user = groupProjectContext.Users.First();
+                //User user = groupProjectContext.Users.First();
                 // End set tạm
 
                 return View("UpdateUser", user);
@@ -80,21 +80,21 @@ namespace GroupProjectWebClient.Controllers
         [HttpPost]
         public async Task<IActionResult> EditUser(User user)
         {
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
             if (userID > 0)
             {
-                //HttpResponseMessage responseUser =
-                //    await client.GetAsync(ApiUrl + "User/GetUser?userID=" + userID);
-                //string strDataUser =
-                //    await responseUser.Content.ReadAsStringAsync();
+                HttpResponseMessage responseUser =
+                    await client.GetAsync(ApiUrl + "User/GetUser?userID=" + userID);
+                string strDataUser =
+                    await responseUser.Content.ReadAsStringAsync();
 
-                //User userUpdate = JsonConvert.DeserializeObject<User>(strDataUser);
+                User userUpdate = JsonConvert.DeserializeObject<User>(strDataUser);
 
                 //Start Setup tạm để test
-                GroupProjectContext groupProjectContext = new GroupProjectContext();
+                //GroupProjectContext groupProjectContext = new GroupProjectContext();
 
-                User userUpdate = groupProjectContext.Users.First();
+                //User userUpdate = groupProjectContext.Users.First();
                 // End set tạm
 
                 userUpdate.Address = user.Address;

@@ -1,6 +1,7 @@
 ﻿@{
 	// Retrieve session data
 	var sessionUserID = Context.Session.GetString("userID");
+	var roleAdmin = Context.Session.GetString("roleAdmin");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -43,52 +44,27 @@
 				</a>
 				<div class="navbar-inner">
 					<ul id="topMenu" class="nav pull-right">
-						<li class=""><a href="/Home">Home</a></li>
+						<li class=""><a href="/Home/Index">Home</a></li>
 						@if (sessionUserID != null)
 						{
-							<li class=""><a href="#">Cart</a></li>
-						}
-						<li class="">
-
-							<a href="#login" role="button" data-toggle="modal" style="padding-right:0">
-								<span class="btn btn-large btn-success">Login</span>
-							</a>
+							<li class=""><a href="/Home/ViewCart">Cart</a></li>
+							<li class=""><a href="/User/Profile">User Profile</a></li>
+							@if (roleAdmin != null)
+							{
+								<li class=""><a href="/User/Profile">Manager</a></li>
+							}
+							<li class=""><a href="/Home/Logout">Log out</a></li>
 							
-							<div id="login" class="modal hide fade in" tabindex="-1" role="dialog"
-								 aria-labelledby="login" aria-hidden="false">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-											aria-hidden="true">
-										�
-									</button>
-									<h3>Login Block</h3>
-								</div>
-								<div class="modal-body">
-									<form class="form-horizontal loginFrm">
-										<div class="control-group">
-											<input type="text" id="inputEmail" placeholder="Email">
-										</div>
-										<div class="control-group">
-											<input type="password" id="inputPassword" placeholder="Password">
-										</div>
-										<div class="control-group">
-											<label class="checkbox">
-												<input type="checkbox"> Remember me
-											</label>
-										</div>
-									</form>
-									<button type="submit" class="btn btn-success">Sign in</button>
-									<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-								</div>
-							</div>
-						</li>
-						<li>
-							@* @if (sessionUserID != null) *@
-							<a href="/User/Profile" style="padding-right:0">
-								<span class="btn btn-large btn-primary">User Profile</span>
-							</a>
-							@* } *@
-						</li>
+						}
+						else
+						{
+
+							<li class="">
+								<a href="/Home/Login" style="padding-right:0">
+									<span class="btn btn-large btn-success">Login</span>
+								</a>
+							</li>
+						}
 					</ul>
 				</div>
 			</div>

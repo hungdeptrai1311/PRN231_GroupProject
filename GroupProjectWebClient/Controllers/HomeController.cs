@@ -46,8 +46,15 @@ namespace GroupProjectWebClient.Controllers
             ViewBag.Brands = brands;
             ViewBag.Categorys = categories;
 
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
+            if (roleId == 2)
+            {
+                if (HttpContext.Session.GetString("roleAdmin") == null)
+                {
+                    HttpContext.Session.SetString("roleAdmin", "true");
+                }
+            }
             List<Cart> carts = new List<Cart>();
 
             if (userID > 0)
@@ -149,7 +156,7 @@ namespace GroupProjectWebClient.Controllers
 
         public async Task<IActionResult> ViewCart()
         {
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
             List<Cart> carts = new List<Cart>();
 
@@ -195,7 +202,7 @@ namespace GroupProjectWebClient.Controllers
 
         public async Task<IActionResult> Payment()
         {
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
             List<Cart> carts = new List<Cart>();
 
@@ -212,7 +219,7 @@ namespace GroupProjectWebClient.Controllers
                 order.UserId = userID;
                 order.OrderDetails = new List<OrderDetail>();
                 order.Date = DateTime.Now;
-
+                order.Status = "Pending Approval";
 
 
                 //List<OrderDetail> orderDetails = new List<OrderDetail>();
@@ -227,12 +234,6 @@ namespace GroupProjectWebClient.Controllers
 
                     order.OrderDetails.Add(orderDetail);
                 }
-
-                //using (GroupProjectContext context = new GroupProjectContext())
-                //{
-                //    context.Orders.Add(order);
-                //    context.SaveChanges();
-                //}
 
                 string strDataOrder = JsonConvert.SerializeObject(order);
                 HttpContent contentOrder = new StringContent(strDataOrder, Encoding.UTF8, "application/json");
@@ -252,7 +253,7 @@ namespace GroupProjectWebClient.Controllers
         public async Task<IActionResult> UpdateCart(int cartID = 0, int changValue = 0, int quantity = -1)
         {
 
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
 
             if (quantity < 0 && changValue == 0)
             {
@@ -318,5 +319,129 @@ namespace GroupProjectWebClient.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        public async Task<IActionResult> Login()
+        {
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
+
+            if (userID > 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> Signup()
+        {
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
+
+            if (userID > 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View("Signup");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LoginCheck(string email, string pass)
+        {
+            User user = new User();
+            user.Email = email;
+            user.Password = pass;
+
+            string strData = JsonConvert.SerializeObject(user);
+            HttpContent content = new StringContent(strData, Encoding.UTF8, "application/json");
+            HttpResponseMessage response =
+                await client.PostAsync(ApiUrl + "Carts/UpdateCart", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                HttpContext.Session.SetString("userID", response.Content.ToString());
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Error = true;
+                return View("Login");
+            }
+
+            // Setup tam thoi
+            //GroupProjectContext context = new GroupProjectContext();
+
+            //User u = context.Users.FirstOrDefault(x => x.Email == email && x.Password == pass);
+
+
+            //if (u != null)
+            //{
+            //    u.Role = null; ;
+            //    u.Order = null;
+            //    u.Carts = null;
+            //    string strData = JsonConvert.SerializeObject(u);
+
+            //    HttpContext.Session.SetString("userID", strData);
+            //    return RedirectToAction("Index");
+            //}
+            //else
+            //{
+            //    ViewBag.Error = true;
+            //    return View("Login");
+            //}
+            // End
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignupCheck(User user, string rePass)
+        {
+            if (user == null)
+            {
+                return RedirectToAction("Signup");
+            }
+            else
+            {
+                if (user.Password == rePass)
+                {
+                    //HttpContent content = new StringContent(strData, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response =
+                        await client.GetAsync(ApiUrl + "User/GetEmail?emai=" + user.Email);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        user.RoleId = 2;
+                        string strData = JsonConvert.SerializeObject(user);
+                        HttpContent contentUser = new StringContent(strData, Encoding.UTF8, "application/json");
+                        HttpResponseMessage responseUser =
+                            await client.PostAsync(ApiUrl + "User/AddUser", contentUser);
+                        if (responseUser.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Login");
+                        }
+                        else
+                        {
+                            ViewBag.ErrorSyS = true;
+                            return View("Signup");
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.ErrorInfomatio = true;
+                        return View("Signup");
+                    }
+                }
+                else
+                {
+                    ViewBag.ErrorConfirmPass = true;
+                    return View("Signup");
+                }
+            }
+        }
+
     }
 }

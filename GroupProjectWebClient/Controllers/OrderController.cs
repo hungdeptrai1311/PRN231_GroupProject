@@ -1,6 +1,7 @@
 ﻿using BusinessObject.Models;
 using GroupProjectWebClient.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Net.Http.Headers;
 
 namespace GroupProjectWebClient.Controllers
@@ -22,27 +23,29 @@ namespace GroupProjectWebClient.Controllers
 
         public async Task<IActionResult> Index()
         {
-            int userID = utill.GetAccountID(HttpContext);
+            (int userID, int roleId) = utill.GetAccountID(HttpContext);
             if (userID > 0)
             {
-                //HttpResponseMessage responseUser =
-                //   await client.GetAsync(ApiUrl + "Order/GetOrderByUserID=" + userID);
-                //string strDataUser =
-                //    await responseUser.Content.ReadAsStringAsync();
+                HttpResponseMessage responseUser =
+                   await client.GetAsync(ApiUrl + "Order/GetOrdersByUserID?UserID=" + userID);
+                string strDataUser =
+                    await responseUser.Content.ReadAsStringAsync();
 
-                //Order order = JsonConvert.DeserializeObject<Order>(strDataUser);
+                List<Order> order = JsonConvert.DeserializeObject<List<Order>>(strDataUser);
 
-                // Tam thoi
-                GroupProjectContext context = new GroupProjectContext();
-                Order order = context.Orders.First();
-                //End
+                //// Tam thoi
+                //GroupProjectContext context = new GroupProjectContext();
+                //List<Order> order = context.Orders.Where(x=> x.UserId == userID).ToList();
+                ////End
 
-                return View(order);
+                return View(order ?? new List<Order>());
             }
             else
             {
                 return Redirect("/Home/Index");
             }
         }
+
+
     }
 }
